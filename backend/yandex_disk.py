@@ -1,3 +1,5 @@
+# yandex_disk.py
+
 import os, requests
 
 TOKEN = os.getenv("YANDEX_TOKEN")
@@ -48,7 +50,3 @@ def download_link(disk_path: str):
                      params={"path": disk_path})
     r.raise_for_status()
     return r.json()["href"]
-
-
-
-

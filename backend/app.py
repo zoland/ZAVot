@@ -7,10 +7,10 @@ import unicodedata
 app = Flask(__name__, static_folder="../frontend", static_url_path="")
 app.secret_key = os.getenv("SECRET_KEY", "change_me")
 
-BASE_FOLDER = "disk:/04ЧР_ОП"
+BASE_FOLDER = "disk:/04ЧР_ОП"						# привязка к ОП
 ADMIN_CODE = os.getenv("ADMIN_CODE", "Z")
 ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "zoland")
-DB_PATH = "bulbul.db"
+DB_PATH = "ZAVot.db"
 
 def db():
     return sqlite3.connect(DB_PATH)

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>БульБуль — Визуализация</title>
+<style>
+  :root{
+    --bg: #0f1115;
+    --card: rgba(255,255,255,0.06);
+    --accent: #4ee1a0;
+    --accent2: #5aa9ff;
+    --text: #e6e6e6;
+    --muted: #9aa3ab;
+    --danger: #ff6b6b;
+    --radius: 18px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin:0; background:var(--bg); color:var(--text);
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  }
+  .app {
+    max-width: 1200px; margin: 0 auto; padding: 24px;
+  }
+  .screen { display:none; gap:20px; }
+  .screen.active { display:grid; }
+  .title { font-size: 22px; font-weight: 700; margin-bottom: 16px; }
+  .card {
+    background: var(--card); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius); padding: 18px;
+    backdrop-filter: blur(10px);
+  }
+  .btn {
+    display: inline-flex; align-items:center; justify-content:center;
+    padding: 12px 16px; border-radius: 14px; border:none;
+    font-weight: 600; cursor: pointer; background: var(--accent);
+    color: #07130e;
+  }
+  .btn.secondary { background: #2a2f3a; color: var(--text); }
+  .btn.ghost { background: transparent; border:1px solid #2a2f3a; color: var(--text); }
+  .grid { display:grid; gap:16px; }
+  .row { display:flex; gap:12px; flex-wrap:wrap; }
+  .pill { padding:6px 10px; border-radius:999px; background:#2a2f3a; color:var(--muted); font-size:12px;}
+  .input {
+    width:100%; padding:12px 14px; border-radius:12px; border:1px solid #2a2f3a;
+    background:#151922; color:var(--text);
+  }
+  .muted { color: var(--muted); font-size: 12px; }
+  .split { display:grid; grid-template-columns: 1.5fr 1fr; gap:16px; }
+  .vote-item { padding:12px; border-radius:12px; background:#151922; border:1px solid #2a2f3a; margin-bottom:10px; }
+  .vote-actions { display:flex; gap:10px; margin-top:10px; }
+  .checkbox {
+    width:18px;height:18px;border-radius:6px;border:1px solid #3a4250;
+    display:inline-block;margin-right:8px; background:#10141b;
+  }
+  .attach { display:flex; align-items:center; gap:8px; padding:8px 10px; border-radius:10px; background:#151922; border:1px solid #2a2f3a; }
+  .status { font-size:12px; color:#a6ffcb;}
+  @media (max-width: 900px){
+    .split { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- ЭКРАН 1: ВХОД -->
+  <section class="screen active" id="login">
+    <div class="card" style="max-width:500px;margin:auto;">
+      <div class="title">БульБуль — Вход</div>
+      <div class="grid">
+        <input class="input" placeholder="Номер протокола"/>
+        <input class="input" placeholder="Код участника"/>
+        <input class="input" placeholder="Пароль (опц.)" type="password"/>
+        <button class="btn">Войти</button>
+        <div class="muted">Доступ фиксируется в log‑журнале</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ЭКРАН 2: СПИСОК ПРОТОКОЛОВ -->
+  <section class="screen active" id="list">
+    <div class="card">
+      <div class="title">Протоколы</div>
+      <div class="grid">
+        <div class="card">
+          <div class="row">
+            <strong>Протокол №12</strong>
+            <span class="pill">Открыто</span>
+            <span class="pill">Проголосовало 7/18</span>
+          </div>
+          <p class="muted">Обсуждение проекта решения по закупке</p>
+          <div class="row">
+            <button class="btn">Перейти</button>
+            <button class="btn secondary">Смотреть</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="row">
+            <strong>Протокол №11</strong>
+            <span class="pill">Закрыто</span>
+            <span class="pill">Итог доступен</span>
+          </div>
+          <p class="muted">Итоги зафиксированы</p>
+          <button class="btn ghost">Итоги</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ЭКРАН 3: ГОЛОСОВАНИЕ -->
+  <section class="screen active" id="vote">
+    <div class="split">
+      <!-- ТЕКСТ ПРОТОКОЛА -->
+      <div class="card">
+        <div class="title">Протокол №12</div>
+        <p>
+          Текст протокола можно листать. Здесь содержится формулировка
+          вопросов, пояснения и порядок голосования.
+        </p>
+        <div class="grid">
+          <div class="attach">📎 Приложение_1.pdf</div>
+          <div class="attach">📎 Смета.xlsx</div>
+        </div>
+      </div>
+
+      <!-- ПАНЕЛЬ ВОПРОСОВ -->
+      <div class="card">
+        <div class="title">Голосование</div>
+
+        <div class="vote-item">
+          <strong>Вопрос 1</strong>
+          <div class="vote-actions">
+            <button class="btn secondary"><span class="checkbox"></span>ЗА</button>
+            <button class="btn secondary"><span class="checkbox"></span>ПРОТИВ</button>
+            <button class="btn secondary"><span class="checkbox"></span>ВОЗД.</button>
+          </div>
+        </div>
+
+        <div class="vote-item">
+          <strong>Вопрос 2</strong>
+          <div class="vote-actions">
+            <button class="btn secondary"><span class="checkbox"></span>A</button>
+            <button class="btn secondary"><span class="checkbox"></span>B</button>
+            <button class="btn secondary"><span class="checkbox"></span>C</button>
+          </div>
+        </div>
+
+        <div class="grid">
+          <button class="btn">Голосовать</button>
+          <button class="btn ghost">Результат</button>
+          <div class="muted">По умолчанию — «Воздержался» или «A»</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+</body>
+</html>

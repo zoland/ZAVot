@@ -1,0 +1,38 @@
+/* user.css */
+.vote-group button {
+  background:#1f2736;
+  color:#fff;
+}
+
+.vote-group button.default {
+  background:#4ee1a0;
+  color:#06110d;
+}
+
+questionList .card { border:1px solid #2a3444; }
+
+protocolList .card { cursor:pointer; transition:.2s; }
+
+/* Голосование (u_vote) */
+.vote-plus { background:#1f4d2e; color:#b7f5c8; }
+.vote-minus { background:#4d1f1f; color:#ffb7b7; }
+.vote-abstain { background:#4d4a1f; color:#ffeaa7; }
+.vote-empty { background:#2b2b2b; color:#888; }
+
+/* Приложения */
+appList a { display:block; margin:4px 0; }
+
+/* Протокол */
+fileList a { display:block; margin:4px 0; }
+
+/* Таблица результатов (u_res) */
+.res-table { width:100%; border-collapse:collapse; margin-top:10px; }
+.res-table th, .res-table td { border:1px solid #333; padding:6px; text-align:center; }
+.res-table th { background:#1b2230; color:#bcd4ff; }
+
+.vote-plus { background:#1f4d2e; color:#b7f5c8; }
+.vote-minus { background:#4d1f1f; color:#ffb7b7; }
+.vote-abstain { background:#4d4a1f; color:#ffeaa7; }
+.vote-empty { background:#2b2b2b; color:#888; }
+
+.res-table tr:hover { background:#1a2333; }

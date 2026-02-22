@@ -1,0 +1,49 @@
+<!-- af_protocol.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Карточка протокола</title>
+  <link rel="stylesheet" href="/css/root.css">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+<div class="app">
+  <div class="topbar">
+    <h2>Протокол</h2>
+    <button class="btn danger" onclick="logout()">Выход</button>
+  </div>
+
+  <input id="p_num" placeholder="Номер"/>
+  <input id="p_start" placeholder="Начало (YYYY-MM-DD)"/>
+  <input id="p_end" placeholder="Окончание (YYYY-MM-DD)"/>
+  <select id="p_status"><option>открыт</option><option>закрыт</option><option>обсуждение</option></select>
+  <select id="p_type"><option>открытое</option><option>тайное</option></select>
+  <input id="p_file" type="file"/>
+
+  <h4>Материалы</h4>
+  <input id="p_materials" type="file" multiple/>
+  <div id="materialsBox"></div>
+
+  <input id="p_qcount" placeholder="Количество вопросов"/>
+  <button onclick="showQuestions()">Настроить вопросы</button>
+
+  <div class="row">
+    <button onclick="saveProtocol()">Сохранить</button>
+    <button onclick="openResults()">Результаты</button>
+  </div>
+</div>
+
+<div id="modalQuestions" class="modal">
+  <div class="modal-content">
+    <h3>Вопросы</h3>
+    <div id="questionsBox"></div>
+    <button onclick="saveQuestions()">Сохранить</button>
+    <button onclick="closeModal('modalQuestions')">Закрыть</button>
+  </div>
+</div>
+
+<script src="/js/common.js"></script>
+<script src="/js/af_protocol.js"></script>
+</body>
+</html>

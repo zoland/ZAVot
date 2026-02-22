@@ -1,0 +1,30 @@
+<!-- a_dir.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Диск</title>
+  <link rel="stylesheet" href="/css/root.css">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+<div class="app">
+  <div class="topbar">
+    <h2>Диск</h2>
+    <button class="btn danger" onclick="logout()">Выход</button>
+  </div>
+
+  <div class="card">
+    <div id="quotaBox"></div>
+    <div>Путь: <span id="pathBox"></span></div>
+  </div>
+
+  <table class="table dir-table" id="dirTable">
+    <thead><tr><th>Имя</th><th>Тип</th><th>Размер</th></tr></thead>
+    <tbody></tbody>
+  </table>
+</div>
+<script src="/js/common.js"></script>
+<script src="/js/a_dir.js"></script>
+</body>
+</html>

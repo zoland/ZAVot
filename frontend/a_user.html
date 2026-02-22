@@ -1,0 +1,42 @@
+<!-- a_user.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Пользователи</title>
+  <link rel="stylesheet" href="/css/root.css">
+  <link rel="stylesheet" href="/css/admin.css">
+  </head>
+<body>
+<div class="app">
+  <div class="topbar">
+    <h2>Пользователи</h2>
+    <button class="btn danger" onclick="logout()">Выход</button>
+  </div>
+  <table class="table" id="userTable">
+    <thead><tr><th>Код</th><th>Тип</th><th>Пароль</th><th></th></tr></thead>
+    <tbody>
+      <tr class="add-row" onclick="showUserModal()"><td colspan="4">-- добавить --</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div id="modalUser" class="modal">
+  <div class="modal-content">
+    <h3>Добавить участника</h3>
+    <input id="u_code" placeholder="Код"/>
+    <select id="u_role">
+      <option>участник</option>
+      <option>наблюдатель</option>
+      <option>admin</option>
+    </select>
+    <input id="u_pass" placeholder="Пароль"/>
+    <button onclick="createUser()">Сохранить</button>
+    <button onclick="closeModal('modalUser')">Закрыть</button>
+  </div>
+</div>
+
+<script src="/js/common.js"></script>
+<script src="/js/a_user.js"></script>
+</body>
+</html>

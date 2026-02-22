@@ -1,0 +1,30 @@
+<!-- a_protocol.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Протоколы</title>
+  <link rel="stylesheet" href="/css/root.css">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+<div class="app">
+  <div class="topbar">
+    <h2>Протоколы</h2>
+    <button class="btn danger" onclick="logout()">Выход</button>
+  </div>
+
+  <table class="table" id="protocolTable">
+    <thead>
+      <tr><th>№</th><th>Файл</th><th>Начало</th><th>Окончание</th><th>Статус</th><th>Тип</th><th></th></tr>
+    </thead>
+    <tbody>
+      <tr class="add-row" onclick="createProtocol()"><td colspan="7">-- добавить --</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<script src="/js/common.js"></script>
+<script src="/js/a_protocol.js"></script>
+</body>
+</html>

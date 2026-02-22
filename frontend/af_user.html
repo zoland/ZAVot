@@ -1,0 +1,28 @@
+<!-- af_user.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Пользователь</title>
+  <link rel="stylesheet" href="/css/root.css">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+<div class="app">
+  <div class="topbar">
+    <h2>Пользователь</h2>
+    <button class="btn danger" onclick="logout()">Выход</button>
+  </div>
+  <input id="u_code" placeholder="Код"/>
+  <input id="u_pass" placeholder="Пароль"/>
+  <select id="u_role">
+    <option>участник</option>
+    <option>наблюдатель</option>
+    <option>admin</option>
+  </select>
+  <button onclick="saveUser()">Сохранить</button>
+</div>
+<script src="/js/common.js"></script>
+<script src="/js/af_user.js"></script>
+</body>
+</html>

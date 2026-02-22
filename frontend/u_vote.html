@@ -1,0 +1,29 @@
+<!-- u_vote.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Голосование</title>
+  <link rel="stylesheet" href="/css/root.css">
+  <link rel="stylesheet" href="/css/user.css">
+</head>
+<body>
+<div class="app">
+  <div class="topbar">
+    <h2>Голосование</h2>
+    <button class="btn danger" onclick="logout()">Выход</button>
+  </div>
+
+  <div class="card">
+    <input id="fillValue" placeholder="Заполнить всех (+/-/@)" value="@" />
+    <button onclick="fillAll()">Заполнить</button>
+  </div>
+
+  <div id="questionList"></div>
+  <button class="btn big green" onclick="submitVote()">Сохранить</button>
+</div>
+
+<script src="/js/common.js"></script>
+<script src="/js/u_vote.js"></script>
+</body>
+</html>

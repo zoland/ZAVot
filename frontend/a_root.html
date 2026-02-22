@@ -1,0 +1,26 @@
+<!-- a_root.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Админ</title>
+  <link rel="stylesheet" href="/css/root.css">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+<div class="app">
+  <div class="topbar">
+    <h2>АДМИНИСТРАТОР</h2>
+    <button class="btn danger" onclick="logout()">Выход</button>
+  </div>
+  <div class="grid">
+    <button class="btn big" onclick="location.href='/a_user.html'">Пользователи</button>
+    <button class="btn big" onclick="location.href='/a_protocol.html'">Протоколы</button>
+    <button class="btn big" onclick="location.href='/a_log.html'">Логи</button>
+    <button class="btn big" onclick="location.href='/a_dir.html'">Диск</button>
+  </div>
+</div>
+<script src="/js/common.js"></script>
+<script src="/js/a_root.js"></script>
+</body>
+</html>

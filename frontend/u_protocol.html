@@ -1,0 +1,41 @@
+<!-- u_protocol.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Протокол</title>
+  <link rel="stylesheet" href="/css/root.css">
+  <link rel="stylesheet" href="/css/user.css">
+</head>
+<body>
+<div class="app">
+  <div class="topbar">
+    <h2>ПРОТОКОЛ</h2>
+    <button class="btn danger" onclick="logout()">Выход</button>
+  </div>
+
+  <div class="split">
+    <div class="section section-a">
+      <h3>Содержание</h3>
+      <div id="pdfViewer"></div>
+      <h4>Материалы</h4>
+      <div id="fileList"></div>
+      <button class="btn" onclick="openApps()">Приложения</button>
+    </div>
+
+    <div class="section section-c" id="votePanel">
+      <h3>Действия</h3>
+      <button class="btn big green" onclick="openVote()">Голосовать</button>
+      <button class="btn big" onclick="openResults()">Результаты</button>
+
+      <h4>Особое мнение (pdf)</h4>
+      <input id="opinionFile" type="file" accept="application/pdf"/>
+      <button class="btn" onclick="uploadOpinion()">Отправить</button>
+    </div>
+  </div>
+</div>
+
+<script src="/js/common.js"></script>
+<script src="/js/u_protocol.js"></script>
+</body>
+</html>

@@ -1,5 +1,7 @@
 body { background:#0f1115; color:#e6e6e6; font-family:Arial,sans-serif; }
 .app { padding:20px; max-width:1200px; margin:auto; }
+.center { text-align:center; }
+
 .screen { display:none; }
 .screen.active { display:block; }
 
@@ -9,26 +11,32 @@ body { background:#0f1115; color:#e6e6e6; font-family:Arial,sans-serif; }
 .section-b { background:#202838; }
 .section-c { background:#18202c; }
 
-.center { text-align:center; }
-.logo { border-radius:12px; margin-bottom:10px; }
-
 .login-wrap {
   border:1px solid #2b3442; padding:20px; border-radius:16px;
   width:340px; margin:auto; box-shadow:0 0 12px rgba(0,0,0,.4);
 }
 .login-wrap input { max-width:260px; margin:6px auto; display:block; }
+.logo { border-radius:12px; margin-bottom:10px; }
 
 .topbar { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
-.btn { padding:12px 18px; border-radius:10px; border:none; cursor:pointer; }
+
+.btn { padding:12px 18px; border-radius:10px; border:none; cursor:pointer; background:#2a3344; color:#fff; }
 .btn.big { width:100%; margin-top:8px; }
 .btn.green { background:#4ee1a0; color:#06110d; }
 .btn.red, .btn.danger { background:#ff6b6b; color:#220909; }
 
-input, select { width:100%; padding:10px; margin:6px 0; border-radius:8px; border:1px solid #333; background:#11151c; color:#fff; }
+input, select {
+  width:100%; padding:10px; margin:6px 0;
+  border-radius:8px; border:1px solid #333;
+  background:#11151c; color:#fff;
+}
+
 .table { width:100%; border-collapse:collapse; }
 .table th, .table td { border-bottom:1px solid #333; padding:8px; text-align:left; }
 .add-row { text-align:center; color:#999; cursor:pointer; }
+
 .scrollbox { max-height:220px; overflow:auto; }
+
 .split { display:grid; grid-template-columns:2fr 1fr; gap:16px; }
 @media(max-width:900px){ .split{grid-template-columns:1fr;} }
 
@@ -47,4 +55,9 @@ input, select { width:100%; padding:10px; margin:6px 0; border-radius:8px; borde
 .file-link:hover { color:#fff; }
 
 .vote-group { display:flex; gap:6px; margin-top:6px; }
-.vote-btn { padding:6px 10px; border-radius:8px; }
+.vote-btn { padding:6px 10px; border-radius:8px; border:none; cursor:pointer; }
+.vote-btn.default { outline:2px solid #4ee1a0; }
+
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; }
+
+.row { display:flex; gap:10px; align-items:center; }

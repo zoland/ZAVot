@@ -1,0 +1,39 @@
+{
+  "users": {
+    "admin001": {
+      "role": "admin",
+      "password": "test123"
+    },
+    "user001": {
+      "role": "user",
+      "password": "user123"
+    }
+  },
+  "protocols": {
+    "001/2026": {
+      "file_name": "Протокол №001 от 2026.pdf",
+      "date_start": "2026-03-01",
+      "date_end": "2026-03-07",
+      "status": "draft",
+      "vote_type": "open",
+      "folder_main": "files/main/001_2026",
+      "folder_apps": "files/main/001_2026/apps"
+    }
+  },
+  "questions": {
+    "1": {
+      "p_num": "001/2026",
+      "q_num": "1",
+      "default_vote": "@"
+    }
+  },
+  "votes": {},
+  "logs": [
+    {
+      "u_code": "admin001",
+      "action": "test_connection",
+      "l_date": "2026-02-23",
+      "l_time": "15:40:02"
+    }
+  ]
+}

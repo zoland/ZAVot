@@ -1,3 +1,5 @@
+// common.js
+
 function qs(id){ return document.getElementById(id); }
 function getParam(name){ return new URLSearchParams(location.search).get(name); }
 

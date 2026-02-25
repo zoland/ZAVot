@@ -11,7 +11,7 @@
 <div class="app">
   <div class="topbar">
     <h2>Диск</h2>
-    <button class="btn danger" onclick="logout()">Выход</button>
+    <button class="btn danger" onclick="goBack()">Выход</button>
   </div>
 
   <div class="card">
@@ -19,10 +19,12 @@
     <div>Путь: <span id="pathBox"></span></div>
   </div>
 
-  <table class="table dir-table" id="dirTable">
-    <thead><tr><th>Имя</th><th>Тип</th><th>Размер</th></tr></thead>
-    <tbody></tbody>
-  </table>
+  <div class="scrollbox">
+    <table class="table dir-table" id="dirTable">
+      <thead><tr><th>Имя</th><th>Тип</th><th>Размер</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
 </div>
 <script src="/js/common.js"></script>
 <script src="/js/a_dir.js"></script>

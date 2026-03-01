@@ -4,7 +4,7 @@ import jwt
 import os
 from datetime import datetime, timedelta
 
-SECRET_KEY = os.getenv('JWT_SECRET')
+SECRET_KEY = os.getenv('JWT_SECRET', 'dev-secret')
 
 def generate_token(user_code: str, role: str) -> str:
     payload = {

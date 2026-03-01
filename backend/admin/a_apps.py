@@ -1,9 +1,18 @@
 # a_apps.py
-
 from flask import Blueprint, request, session
-from common import db, BASE_FOLDER, upload_file, delete_file
+from common import db, BASE_FOLDER, upload_file, delete_file, list_folder
 
 bp = Blueprint("a_apps", __name__)
+
+@bp.get("/api/admin/protocols/<int:pid>/materials")
+def materials_list(pid):
+    if session.get("role") != "admin": return {"error":"unauthorized"}, 401
+    with db() as conn:
+        folder = conn.execute("SELECT folder FROM protocols WHERE id=?", (pid,)).fetchone()[0]
+    path = f"{BASE_FOLDER}/{folder}"
+    items = list_folder(path) or []
+    files = [x["name"] if isinstance(x, dict) else x for x in items]
+    return {"items": files}
 
 @bp.post("/api/admin/protocols/<int:pid>/materials")
 def materials_upload(pid):

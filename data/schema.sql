@@ -9,11 +9,12 @@ CREATE TABLE IF NOT EXISTS protocols (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   num INT,
   file_name TEXT,
-  date_start TEXT,
-  date_end TEXT,
+  date TEXT,
   status TEXT,
   vote_type TEXT,
-  folder TEXT
+  folder TEXT,
+  qcount INT,
+  quorum_default TEXT
 );
 
 CREATE TABLE IF NOT EXISTS questions (
@@ -22,7 +23,9 @@ CREATE TABLE IF NOT EXISTS questions (
   qnum INT,
   opt1 TEXT,
   opt2 TEXT,
-  opt3 TEXT
+  opt3 TEXT,
+  default_vote TEXT,
+  quorum TEXT
 );
 
 CREATE TABLE IF NOT EXISTS votes (
@@ -30,7 +33,8 @@ CREATE TABLE IF NOT EXISTS votes (
   protocol_id INT,
   user_code TEXT,
   question_id INT,
-  vote TEXT
+  vote TEXT,
+  voted INT
 );
 
 CREATE TABLE IF NOT EXISTS logs (

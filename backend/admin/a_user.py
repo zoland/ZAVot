@@ -34,3 +34,16 @@ def users_delete(uid):
         conn.commit()
     log_action("ADMIN", f"user_delete {uid}")
     return {"ok": True}
+
+@bp.put("/api/admin/users/<int:uid>")
+def users_update(uid):
+    if session.get("role") != "admin": return {"error":"unauthorized"}, 401
+    d = request.json
+    code = unicodedata.normalize("NFC", d["code"])
+    password = unicodedata.normalize("NFC", d["password"])
+    with db() as conn:
+        conn.execute("UPDATE users SET code=?, role=?, password=? WHERE id=?",
+                     (code, d["role"], password, uid))
+        conn.commit()
+    log_action("ADMIN", f"user_update {uid}")
+    return {"ok": True}

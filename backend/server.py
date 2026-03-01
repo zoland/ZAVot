@@ -1,23 +1,13 @@
 # server.py
-
 from flask import Flask
 from common import setup_app
 
 import login
-import a_user
-import a_protocol
-import a_apps
-import a_log
-import u_protocol
-import u_apps
-import u_res
-import u_vote
+from admin import a_user, a_protocol, a_apps, a_log, a_dir
+from user import u_protocol, u_apps, u_res, u_vote
 
 app = Flask(__name__, static_folder="../frontend", static_url_path="")
 setup_app(app)
-
-from admin.a_dir import a_dir_bp
-app.register_blueprint(a_dir_bp)
 
 # главная страница
 @app.get("/")
@@ -30,6 +20,8 @@ app.register_blueprint(a_user.bp)
 app.register_blueprint(a_protocol.bp)
 app.register_blueprint(a_apps.bp)
 app.register_blueprint(a_log.bp)
+app.register_blueprint(a_dir.a_dir_bp)
+
 app.register_blueprint(u_protocol.bp)
 app.register_blueprint(u_apps.bp)
 app.register_blueprint(u_res.bp)

@@ -1,49 +1,74 @@
-<!-- af_protocol.html -->
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8"/>
-  <title>Карточка протокола</title>
+  <meta charset="utf-8">
+  <title>Протокол</title>
   <link rel="stylesheet" href="/css/root.css">
   <link rel="stylesheet" href="/css/admin.css">
 </head>
 <body>
-<div class="app">
-  <div class="topbar">
+  <div class="wrap">
     <h2>Протокол</h2>
-    <button class="btn danger" onclick="logout()">Выход</button>
+
+    <div class="row-inline">
+      <div class="field-col">
+        <label>Номер</label>
+        <input id="p_num" type="text" maxlength="6" class="w-num">
+      </div>
+      <div class="field-col">
+        <label>Дата протокола</label>
+        <input id="p_date" type="date" class="w-date">
+      </div>
+    </div>
+
+    <label>Статус</label>
+    <div class="segmented">
+      <input type="radio" id="st_open" name="p_status" value="open" checked>
+      <label for="st_open">Открыт</label>
+      <input type="radio" id="st_closed" name="p_status" value="closed">
+      <label for="st_closed">Закрыт</label>
+    </div>
+
+    <label>Тип голосования</label>
+    <div class="segmented">
+      <input type="radio" id="vt_secret" name="p_type" value="secret" checked>
+      <label for="vt_secret">Тайное</label>
+      <input type="radio" id="vt_open" name="p_type" value="open">
+      <label for="vt_open">Открытое</label>
+    </div>
+
+    <label>Файл протокола</label>
+    <div class="row">
+      <input id="p_file_name" type="text" readonly class="file-name">
+      <button onclick="triggerProtocolFile()">Выбрать</button>
+    </div>
+    <input id="p_file" type="file" style="display:none" />
+
+    <div class="card questions-box">
+      <div class="row">
+        <label>Количество вопросов</label>
+        <input type="number" id="p_qcount" min="1" max="99">
+      </div>
+      <div class="row q-actions">
+        <button id="btnQuorum" onclick="toggleQuorumDefault()">Кворум: 1/2</button>
+        <button onclick="openQuestions()">Список</button>
+      </div>
+    </div>
+
+    <h3>Приложения</h3>
+    <table id="materialsTable">
+      <tbody></tbody>
+    </table>
+
+    <div class="actions">
+      <button class="btn edit" onclick="openResults()">Результаты</button>
+      <button class="btn exit" onclick="exitCard()">Выход</button>
+    </div>
   </div>
 
-  <input id="p_num" placeholder="Номер"/>
-  <input id="p_start" placeholder="Начало (YYYY-MM-DD)"/>
-  <input id="p_end" placeholder="Окончание (YYYY-MM-DD)"/>
-  <select id="p_status"><option>открыт</option><option>закрыт</option><option>обсуждение</option></select>
-  <select id="p_type"><option>открытое</option><option>тайное</option></select>
-  <input id="p_file" type="file"/>
+  <input type="file" id="p_materials" multiple style="display:none" />
 
-  <h4>Материалы</h4>
-  <input id="p_materials" type="file" multiple/>
-  <div id="materialsBox"></div>
-
-  <input id="p_qcount" placeholder="Количество вопросов"/>
-  <button onclick="showQuestions()">Настроить вопросы</button>
-
-  <div class="row">
-    <button onclick="saveProtocol()">Сохранить</button>
-    <button onclick="openResults()">Результаты</button>
-  </div>
-</div>
-
-<div id="modalQuestions" class="modal">
-  <div class="modal-content">
-    <h3>Вопросы</h3>
-    <div id="questionsBox"></div>
-    <button onclick="saveQuestions()">Сохранить</button>
-    <button onclick="closeModal('modalQuestions')">Закрыть</button>
-  </div>
-</div>
-
-<script src="/js/common.js"></script>
-<script src="/js/af_protocol.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/af_protocol.js"></script>
 </body>
 </html>

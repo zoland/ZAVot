@@ -2,7 +2,7 @@
 
 from flask import Blueprint, request, jsonify
 import requests
-from shared.yandex_disk import list_folder, headers, BASE_URL
+from yandex_disk import list_folder, headers, BASE_URL
 
 a_dir_bp = Blueprint("a_dir", __name__)
 

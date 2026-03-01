@@ -1,4 +1,10 @@
-body { background:#0f1115; color:#e6e6e6; font-family:Arial,sans-serif; }
+body { 
+  background:#0f1115; 
+  color:#e6e6e6; 
+  font-family:Arial,sans-serif; 
+  overscroll-behavior-x: none; /* запрет навигации жестом */
+}
+
 .app { padding:20px; max-width:1200px; margin:auto; }
 .center { text-align:center; }
 
@@ -20,7 +26,16 @@ body { background:#0f1115; color:#e6e6e6; font-family:Arial,sans-serif; }
 
 .topbar { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
 
-.btn { padding:12px 18px; border-radius:10px; border:none; cursor:pointer; background:#2a3344; color:#fff; }
+.btn {
+  padding:12px 18px;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  background:#2a3344;
+  color:#fff;
+  box-shadow:0 4px 10px rgba(0,0,0,.35);
+  font-weight:bold;
+}
 .btn.big { width:100%; margin-top:8px; }
 .btn.green { background:#4ee1a0; color:#06110d; }
 .btn.red, .btn.danger { background:#ff6b6b; color:#220909; }
@@ -61,3 +76,32 @@ input, select {
 .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; }
 
 .row { display:flex; gap:10px; align-items:center; }
+
+/* ===== админ-меню ===== */
+.admin-menu{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(160px, 1fr));
+  gap:16px;
+}
+
+.admin-btn{
+  aspect-ratio:1/1;
+  border-radius:18px;
+  font-size:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  line-height:1.2;
+  background:#2a3344;
+  color:#fff;
+  border:none;
+  cursor:pointer;
+  box-shadow:0 6px 14px rgba(0,0,0,.4);
+  font-weight:bold;
+}
+
+.admin-btn.logout{
+  background:#ff6b6b;
+  color:#220909;
+}

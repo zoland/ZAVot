@@ -1,7 +1,7 @@
 # common.py
 import os, sqlite3
 from datetime import datetime
-from services.yandex_disk import (
+from yandex_disk import (
     create_folder, upload_file, list_folder,
     download_link, delete_file
 )
@@ -9,8 +9,7 @@ from services.yandex_disk import (
 BASE_FOLDER = "disk:/04ЧР_ОП"
 ADMIN_CODE = os.getenv("ADMIN_CODE", "Z")
 ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "zoland")
-DB_PATH = "ZAVot.db"
-
+DB_PATH = "../data/ZAVot.db"
 def db():
     return sqlite3.connect(DB_PATH)
 

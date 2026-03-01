@@ -6,24 +6,30 @@
   <title>Пользователи</title>
   <link rel="stylesheet" href="/css/root.css">
   <link rel="stylesheet" href="/css/admin.css">
-  </head>
+</head>
 <body>
 <div class="app">
   <div class="topbar">
     <h2>Пользователи</h2>
-    <button class="btn danger" onclick="logout()">Выход</button>
   </div>
-  <table class="table" id="userTable">
-    <thead><tr><th>Код</th><th>Тип</th><th>Пароль</th><th></th></tr></thead>
-    <tbody>
-      <tr class="add-row" onclick="showUserModal()"><td colspan="4">-- добавить --</td></tr>
-    </tbody>
-  </table>
+
+  <div class="table-wrap">
+    <table class="table" id="userTable">
+      <thead><tr><th>Код</th><th>Тип</th><th>Пароль</th><th></th></tr></thead>
+      <tbody>
+        <tr class="add-row" onclick="showUserModal()"><td colspan="4">-- добавить --</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="actions">
+    <button class="btn exit" onclick="exitPage()">Выход</button>
+  </div>
 </div>
 
 <div id="modalUser" class="modal">
   <div class="modal-content">
-    <h3>Добавить участника</h3>
+    <h3>Пользователь</h3>
     <input id="u_code" placeholder="Код"/>
     <select id="u_role">
       <option>участник</option>
@@ -31,8 +37,7 @@
       <option>admin</option>
     </select>
     <input id="u_pass" placeholder="Пароль"/>
-    <button onclick="createUser()">Сохранить</button>
-    <button onclick="closeModal('modalUser')">Закрыть</button>
+    <button class="btn danger" onclick="modalExit()">Выход</button>
   </div>
 </div>
 

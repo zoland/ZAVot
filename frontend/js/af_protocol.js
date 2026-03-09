@@ -8,6 +8,7 @@ let quorumDefault = "1/2";
 let initial = null;
 let materials = [];
 let pendingMaterials = [];
+let pendingRemovals = [];
 let selectedMatIndex = null;
 
 let matStartX = 0;
@@ -17,6 +18,18 @@ let matSwipeIndex = null;
 let matLastWheel = 0;
 
 function qs(id){ return document.getElementById(id); }
+
+function showWait(text="Сохранение..."){
+  const el = document.getElementById("waitOverlay");
+  if (!el) return;
+  el.querySelector(".wait-text").textContent = text;
+  el.classList.add("active");
+}
+function hideWait(){
+  const el = document.getElementById("waitOverlay");
+  if (!el) return;
+  el.classList.remove("active");
+}
 
 function snapshot(){
   return {
@@ -32,33 +45,28 @@ function snapshot(){
 }
 
 function isDirty(){
+  if (pendingMaterials.length || pendingRemovals.length) return true;
   if (!initial) return true;
   const curr = snapshot();
   return Object.keys(curr).some(k => curr[k] !== initial[k]);
 }
 
-function triggerProtocolFile(){
-  qs("p_file").click();
-}
+function triggerProtocolFile(){ qs("p_file").click(); }
 
 qs("p_file").addEventListener("change", () => {
   const f = qs("p_file").files[0];
   qs("p_file_name").value = f ? f.name : "";
 });
 
-function addMaterials(){
-  qs("p_materials").click();
-}
+function addMaterials(){ qs("p_materials").click(); }
 
 qs("p_materials").addEventListener("change", async () => {
   const files = Array.from(qs("p_materials").files);
   for (const f of files) {
     if (!f.name.toLowerCase().endsWith(".pdf")) continue;
     if (materials.find(m => m.name === f.name)) continue;
-
-    materials.push({name: f.name});
-    if (pid) await uploadMaterial(f);
-    else pendingMaterials.push(f);
+    materials.push({name: f.name, persisted:false});
+    pendingMaterials.push(f);
   }
   qs("p_materials").value = "";
   renderMaterials();
@@ -79,8 +87,10 @@ async function deleteMaterial(name){
 }
 
 function displayName(x){
-  const name = (typeof x === "string") ? x : (x && x.name ? x.name : "");
-  return name ? name.split(/[\\/]/).pop() : "";
+  if (!x) return "";
+  if (typeof x === "string") return x.split(/[\\/]/).pop();
+  if (x.name) return x.name.split(/[\\/]/).pop();
+  return "";
 }
 
 function renderMaterials(){
@@ -100,7 +110,6 @@ function renderMaterials(){
     tr.addEventListener("wheel", e => matWheelSwipe(e, tr, i), {passive:false});
 
     if (selectedMatIndex === i) tr.classList.add("selected");
-
     tbody.appendChild(tr);
   });
 
@@ -125,11 +134,13 @@ function clearMatSelection(){
 }
 
 async function removeMaterial(i){
-  const name = materials[i].name;
+  const m = materials[i];
   materials.splice(i, 1);
   clearMatSelection();
   renderMaterials();
-  await deleteMaterial(name);
+
+  if (m.persisted) pendingRemovals.push(m.name);
+  else pendingMaterials = pendingMaterials.filter(f => f.name !== m.name);
 }
 
 function matPointerDown(e, tr, i){
@@ -229,9 +240,11 @@ async function saveProtocol(){
     return false;
   }
 
+  let ok = false;
+
   if (pid){
     const r = await sendJson(`/api/admin/protocols/${pid}`, "PUT", buildJson());
-    return r.ok;
+    ok = r.ok;
   } else {
     const file = qs("p_file").files[0];
     if (!file) {
@@ -251,19 +264,39 @@ async function saveProtocol(){
     const r = await sendForm("/api/admin/protocols/create", "POST", fd);
     if (r.ok && r.data && r.data.id) {
       pid = r.data.id;
-      for (const f of pendingMaterials) await uploadMaterial(f);
-      pendingMaterials = [];
-    }
-    return r.ok;
+      ok = true;
+    } else ok = false;
   }
+
+  if (!ok) return false;
+
+  for (const f of pendingMaterials) await uploadMaterial(f);
+  pendingMaterials = [];
+
+  for (const name of pendingRemovals) await deleteMaterial(name);
+  pendingRemovals = [];
+
+  initial = snapshot();
+  return true;
 }
 
-function exitCard(){
+async function exitCard(){
   if (!isDirty()) {
     location.href = "/a_protocols.html";
     return;
   }
-  saveProtocol().then(ok => { if (ok) location.href = "/a_protocols.html"; });
+
+  const save = confirm("Сохранить изменения?\nOK — сохранить, Отмена — не сохранять");
+  if (save) {
+    showWait("Сохранение...");
+    const ok = await saveProtocol();
+    hideWait();
+    if (ok) location.href = "/a_protocols.html";
+  } else {
+    pendingMaterials = [];
+    pendingRemovals = [];
+    location.href = "/a_protocols.html";
+  }
 }
 
 function openResults(){
@@ -286,12 +319,28 @@ document.addEventListener("keydown", (e) => {
 async function loadMaterials(){
   materials = [];
   const res = await fetch(`/api/admin/protocols/${pid}/materials`);
-  if (!res.ok) return;
-  const data = await res.json();
+  if (!res.ok) { renderMaterials(); return; }
 
-  if (Array.isArray(data.items)) {
-    materials = data.items.map(x => (typeof x === "string" ? {name:x} : x));
+  const data = await res.json();
+  let list = null;
+
+  if (Array.isArray(data.items)) list = data.items;
+  else if (data.items && data.items._embedded && Array.isArray(data.items._embedded.items)) {
+    list = data.items._embedded.items;
+  } else if (data._embedded && Array.isArray(data._embedded.items)) {
+    list = data._embedded.items;
   }
+
+  if (Array.isArray(list)) {
+    materials = list
+      .map(x => {
+        if (typeof x === "string") return { name:x, persisted:true };
+        if (x && x.name) return { name:x.name, persisted:true };
+        return null;
+      })
+      .filter(x => x);
+  }
+
   renderMaterials();
 }
 

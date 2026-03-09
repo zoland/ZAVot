@@ -4,15 +4,38 @@ from common import db, BASE_FOLDER, upload_file, delete_file, list_folder
 
 bp = Blueprint("a_apps", __name__)
 
+
 @bp.get("/api/admin/protocols/<int:pid>/materials")
 def materials_list(pid):
-    if session.get("role") != "admin": return {"error":"unauthorized"}, 401
+    if session.get("role") != "admin": 
+        return {"error":"unauthorized"}, 401
+
     with db() as conn:
         folder = conn.execute("SELECT folder FROM protocols WHERE id=?", (pid,)).fetchone()[0]
+
     path = f"{BASE_FOLDER}/{folder}"
-    items = list_folder(path) or []
-    files = [x["name"] if isinstance(x, dict) else x for x in items]
+    raw = list_folder(path)
+
+    items = []
+    if isinstance(raw, dict):
+        if "_embedded" in raw and isinstance(raw["_embedded"], dict):
+            items = raw["_embedded"].get("items", [])
+        elif "items" in raw:
+            items = raw.get("items", [])
+    elif isinstance(raw, list):
+        items = raw
+
+    files = []
+    for it in items:
+        if isinstance(it, dict):
+            name = it.get("name")
+        else:
+            name = str(it)
+        if name:
+            files.append(name)
+
     return {"items": files}
+
 
 @bp.post("/api/admin/protocols/<int:pid>/materials")
 def materials_upload(pid):

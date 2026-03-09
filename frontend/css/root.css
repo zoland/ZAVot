@@ -105,3 +105,26 @@ input, select {
   background:#ff6b6b;
   color:#220909;
 }
+
+.wait-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 9999;
+}
+.wait-overlay.active{ display:flex; }
+
+.spinner{
+  width:48px;
+  height:48px;
+  border:6px solid #bbb;
+  border-top:6px solid #4ee1a0;
+  border-radius:50%;
+  animation: spin 1s linear infinite;
+}
+.wait-text{ margin-top:12px; color:#fff; font-weight:700; }
+@keyframes spin{ to{ transform:rotate(360deg); } }

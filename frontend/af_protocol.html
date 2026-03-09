@@ -21,22 +21,7 @@
       </div>
     </div>
 
-    <label>Статус</label>
-    <div class="segmented">
-      <input type="radio" id="st_open" name="p_status" value="open" checked>
-      <label for="st_open">Открыт</label>
-      <input type="radio" id="st_closed" name="p_status" value="closed">
-      <label for="st_closed">Закрыт</label>
-    </div>
-
-    <label>Тип голосования</label>
-    <div class="segmented">
-      <input type="radio" id="vt_secret" name="p_type" value="secret" checked>
-      <label for="vt_secret">Тайное</label>
-      <input type="radio" id="vt_open" name="p_type" value="open">
-      <label for="vt_open">Открытое</label>
-    </div>
-
+    <!-- Файл протокола -->
     <label>Файл протокола</label>
     <div class="row">
       <input id="p_file_name" type="text" readonly class="file-name">
@@ -44,6 +29,36 @@
     </div>
     <input id="p_file" type="file" style="display:none" />
 
+    <!-- Приложения (та же рамка, как у вопросов) -->
+    <div class="card questions-box">
+      <h3>Приложения</h3>
+      <table id="materialsTable">
+        <tbody></tbody>
+      </table>
+    </div>
+
+<div class="st-type-grid">
+  <div class="st-type-col">
+    <label>Статус</label>
+    <div class="segmented">
+      <input type="radio" id="st_open" name="p_status" value="open" checked>
+      <label for="st_open">Открыт</label>
+      <input type="radio" id="st_closed" name="p_status" value="closed">
+      <label for="st_closed">Закрыт</label>
+    </div>
+  </div>
+
+  <div class="st-type-col">
+    <label>Тип</label>
+    <div class="segmented">
+      <input type="radio" id="vt_secret" name="p_type" value="secret" checked>
+      <label for="vt_secret">Тайное</label>
+      <input type="radio" id="vt_open" name="p_type" value="open">
+      <label for="vt_open">Открытое</label>
+    </div>
+  </div>
+</div>
+    <!-- Вопросы -->
     <div class="card questions-box">
       <div class="row">
         <label>Количество вопросов</label>
@@ -55,11 +70,6 @@
       </div>
     </div>
 
-    <h3>Приложения</h3>
-    <table id="materialsTable">
-      <tbody></tbody>
-    </table>
-
     <div class="actions">
       <button class="btn edit" onclick="openResults()">Результаты</button>
       <button class="btn exit" onclick="exitCard()">Выход</button>
@@ -67,6 +77,12 @@
   </div>
 
   <input type="file" id="p_materials" multiple style="display:none" />
+
+  <!-- Оверлей ожидания -->
+  <div id="waitOverlay" class="wait-overlay">
+    <div class="spinner"></div>
+    <div class="wait-text">Сохранение...</div>
+  </div>
 
   <script src="/js/common.js"></script>
   <script src="/js/af_protocol.js"></script>

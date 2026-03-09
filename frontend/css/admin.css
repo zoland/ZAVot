@@ -148,6 +148,9 @@ button:active, .btn:active{
   border-radius: 14px;
   padding: 16px;
   margin-top: 16px;
+  width: fit-content;
+  max-width: 100%;
+  display: inline-block;
 }
 
 .q-actions button { margin-right: 8px; }
@@ -175,6 +178,20 @@ button:active, .btn:active{
   cursor: pointer;
 }
 
+/* легенда кворума */
+.q-legend{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  margin:10px 0 16px;
+  font-size:14px;
+}
+.q-pill{
+  padding:4px 10px;
+  border-radius:12px;
+  font-weight:700;
+}
+
 /* ===== размеры полей ===== */
 .row-inline{
   display:flex;
@@ -193,4 +210,17 @@ button:active, .btn:active{
   overflow:hidden;
   text-overflow:ellipsis;
   white-space:nowrap;
+}
+
+.st-type-grid{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(240px, 1fr));
+  gap:16px;
+  margin-top:12px;
+  margin-bottom:12px;
+}
+.st-type-col{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
 }

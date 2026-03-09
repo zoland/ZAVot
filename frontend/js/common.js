@@ -27,3 +27,15 @@ function logout(){
     location.href = "/login.html";
   });
 }
+
+function showWait(text="Сохранение..."){
+  const el = document.getElementById("waitOverlay");
+  if (!el) return;
+  el.querySelector(".wait-text").textContent = text;
+  el.classList.add("active");
+}
+function hideWait(){
+  const el = document.getElementById("waitOverlay");
+  if (!el) return;
+  el.classList.remove("active");
+}

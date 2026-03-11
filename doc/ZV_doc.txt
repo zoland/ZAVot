@@ -1,0 +1,53 @@
+zavot % ls -R
+
+LICENSE		backend		data		frontend
+Readme.md	config		doc		tests
+
+./backend:
+ZAVot.db		common.py		requirements.txt
+__init__.py		db.py			server.py
+admin			login.py		user
+auth.py			logo.png		yandex_disk.py
+
+./backend/admin:
+a_apps.py	a_log.py	a_res.py
+a_dir.py	a_protocol.py	a_user.py
+
+./backend/user:
+u_apps.py	u_protocol.py	u_res.py	u_vote.py
+
+./config:
+env.example
+
+./data:
+ZAVot.db		schema.sql		zavot_sa_key.json
+
+./doc:
+ZAVot 2.0.docx
+ZAVot отчеты.docx
+bb1.html
+bb2.html
+Снимок экрана 2026-02-16 в 15.43.50.png
+Снимок экрана 2026-02-16 в 15.44.01.png
+
+./frontend:
+404.html		af_log.html		js
+a_dir.html		af_protocol.html	login.html
+a_log.html		af_questions.html	u_apps.html
+a_protocols.html	af_res.html		u_protocol.html
+a_root.html		af_user.html		u_res.html
+a_user.html		css			u_root.html
+af_log.hnml		index.html		u_vote.html
+
+./frontend/css:
+admin.css	root.css	user.css
+
+./frontend/js:
+a_dir.js	a_user.js	af_res.js	login.js	u_root.js
+a_log.js	af_log.js	af_user.js	u_apps.js	u_vote.js
+a_protocols.js	af_protocol.js	common.js	u_protocol.js
+a_root.js	af_questions.js	index.js	u_res.js
+
+./tests:
+test_YD.py		test_data.json		test_ydb.py
+test_YD_ext.py		test_memory_store.py

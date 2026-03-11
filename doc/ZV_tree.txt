@@ -2,33 +2,40 @@ https://github.com/zoland/ZAVot/
 
 zavot % ls -R
 
-LICENSE		backend		data		frontend
-Readme.md	config		doc		tests
+LICENSE		backend		doc		tests
+Readme.md	config		frontend
 
 ./backend:
-ZAVot.db		common.py		requirements.txt
+ZAVot.db		data			schema.sql
 __init__.py		db.py			server.py
 admin			login.py		user
 auth.py			logo.png		yandex_disk.py
+common.py		requirements.txt
 
 ./backend/admin:
 a_apps.py	a_log.py	a_res.py
 a_dir.py	a_protocol.py	a_user.py
 
+./backend/data:
+
 ./backend/user:
 u_apps.py	u_protocol.py	u_res.py	u_vote.py
 
 ./config:
-env.example
-
-./data:
-ZAVot.db		schema.sql		zavot_sa_key.json
+env.example		zavot_sa_key.json
 
 ./doc:
-ZAVot 2.0.docx
-ZAVot отчеты.docx
+ZV_DB.doc
+ZV_DB.docx
+ZV_doc.txt
+ZV_doc_0.docx
+ZV_info.docx
+ZV_report_0.docx
+ZV_tree.txt
 bb1.html
 bb2.html
+~$ZV_DB.doc
+~$_report.docx
 Снимок экрана 2026-02-16 в 15.43.50.png
 Снимок экрана 2026-02-16 в 15.44.01.png
 
@@ -51,5 +58,9 @@ a_protocols.js	af_protocol.js	common.js	u_protocol.js
 a_root.js	af_questions.js	index.js	u_res.js
 
 ./tests:
-test_YD.py		test_data.json		test_ydb.py
-test_YD_ext.py		test_memory_store.py
+data			test_data.json		vector.py
+test_YD.py		test_memory_store.py
+test_YD_ext.py		test_ydb.py
+
+./tests/data:
+ZV_doc.txt

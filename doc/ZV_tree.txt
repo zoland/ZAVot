@@ -2,8 +2,9 @@ https://github.com/zoland/ZAVot/
 
 zavot % ls -R
 
-LICENSE		backend		doc		tests
-Readme.md	config		frontend
+LICENSE			config			tests
+Readme.md		doc			update_github.sh
+backend			frontend
 
 ./backend:
 ZAVot.db		data			schema.sql
@@ -27,14 +28,17 @@ env.example		zavot_sa_key.json
 ./doc:
 ZV_DB.doc
 ZV_DB.docx
+ZV_DB.txt
 ZV_doc.txt
 ZV_doc_0.docx
+ZV_doc_4.docx
 ZV_info.docx
 ZV_report_0.docx
+ZV_report_4.txt
 ZV_tree.txt
+ZV_промпт.txt
 bb1.html
 bb2.html
-~$ZV_DB.doc
 ~$_report.docx
 Снимок экрана 2026-02-16 в 15.43.50.png
 Снимок экрана 2026-02-16 в 15.44.01.png
